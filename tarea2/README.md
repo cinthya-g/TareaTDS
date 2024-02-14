@@ -16,6 +16,6 @@ Iniciar escucha del servidor (3001->env ó 3000):
 Borrar la carpeta node_modules (si fue creada en una ejecución previa) y el archivo package-lock.json y reinstalarlas:
 ```
 rm -rf node_modules
-rm pacakge-lock.json
+rm package-lock.json
 npm install
 ```
