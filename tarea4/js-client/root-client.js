@@ -13,7 +13,7 @@ function performSearch(keyword, token) {
     fetch(`/${encodeURIComponent(keyword)}?token=${encodeURIComponent(token)}`)
     .then(response => response.json())
     .then(data => {
-        var newsContainer = document.getElementById('mainNewsContainer');
+        var newsContainer = document.getElementById('newsCardContainer');
         newsContainer.innerHTML = ''; // Clear existing content
         data.news_results.forEach(news => {
             var card = document.createElement('div');
@@ -33,6 +33,7 @@ function performSearch(keyword, token) {
     })
     .catch(error => console.error('Error fetching news:', error));
 }
+
 
 // looks for previous keyword and token in the url to perform a search automatically
 document.addEventListener('DOMContentLoaded', function() {
