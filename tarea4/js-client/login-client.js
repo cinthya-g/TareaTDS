@@ -15,7 +15,7 @@ function logIn() {
             .then(data => {
                 if (data.token) {
                     localStorage.setItem('token', data.token);
-                    fetchRootWithToken(data.token);
+                    window.location.href = `/?token=${data.token}`;
                 } else {
                     alert(data.error);
                 }
@@ -27,25 +27,3 @@ function logIn() {
     });
 }
 logIn();
-
-function fetchRootWithToken(token) {
-    // Send headers to authMiddleware
-    fetch('/', {
-        method: "GET", 
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `${token}` 
-        }
-    })
-    .then(response => {
-        return response.text();
-    })
-    .then(html => {
-        history.pushState({}, '', '/');
-        document.body.innerHTML = html;
-        
-    })
-    .catch(error => {
-        alert('Cannot auth!: '+ error.message);
-    });
-}

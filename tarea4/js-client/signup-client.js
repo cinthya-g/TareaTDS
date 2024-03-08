@@ -2,9 +2,9 @@
 function signUp() {
     document.getElementById('signupForm').addEventListener('submit', function (event) {
         event.preventDefault();
-        let name = document.getElementById('signupName').value;
-        let mail = document.getElementById('signupEmail').value;
-        let password = document.getElementById('signupPassword').value;
+        const name = document.getElementById('signupName').value;
+        const mail = document.getElementById('signupEmail').value;
+        const password = document.getElementById('signupPassword').value;
 
         // check if every field is filled
         if (!name || !mail || !password) {
@@ -23,7 +23,7 @@ function signUp() {
             .then(data => {
                 if (data.token) {
                     localStorage.setItem('token', data.token);
-                    fetchRootWithToken(data.token);
+                    window.location.href = `/?token=${data.token}`;
                 } else {
                     alert(data.error);
                 }
@@ -35,24 +35,3 @@ function signUp() {
 }
 signUp();
 
-function fetchRootWithToken(token) {
-    // Send headers to authMiddleware
-    fetch('/', {
-        method: "GET", 
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `${token}` 
-        }
-    })
-    .then(response => {
-        return response.text();
-    })
-    .then(html => {
-        history.pushState({}, '', '/');
-        document.body.innerHTML = html;
-        
-    })
-    .catch(error => {
-        alert('Cannot auth!: '+ error.message);
-    });
-}

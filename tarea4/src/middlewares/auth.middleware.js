@@ -3,10 +3,11 @@ const { verifyToken } = require('./../models/token');
 
 
 const authUserMiddleware = (req, res, next) => {
-    const token = req.headers.Authorization || req.headers.authorization;
+    console.log('MIDDLEWARE: entered to authUserMiddleware');
+    const token = req.query.token;    
     if(token) { 
         try {
-            // verify the headers token with the decoded one
+            // verify the param token 
             const decoded = verifyToken(token);
             req.user = decoded;
             res.locals.username = decoded.name; // sends the username as a handlebar parameter

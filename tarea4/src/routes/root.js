@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const rootController = require('../controllers/root.controller');
 
+
 // GET rendered home page
 router.get('', (req, res) => {
     res.render('news', 
