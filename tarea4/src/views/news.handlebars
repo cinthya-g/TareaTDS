@@ -1,0 +1,19 @@
+<div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+        <h3>{{sub_title}} {{total}}</h3>
+        <!-- Generate cards with a for -->
+        <div class="card-columns mt-5" id="newsContainer">
+            {{#each news_results}}
+            <div class="card">
+                <img src="{{this.urlToImage}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{this.title}}</h5>
+                    <p class="card-text">{{this.description}}</p>
+                    <a href="{{this.url}}" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
