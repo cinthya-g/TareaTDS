@@ -13,6 +13,8 @@ function performSearch(keyword, token) {
     fetch(`/${encodeURIComponent(keyword)}?token=${encodeURIComponent(token)}`)
     .then(response => response.json())
     .then(data => {
+        var totalNews = document.getElementById('resultsFor');
+        totalNews.innerHTML = `Results for: ${keyword} (${data.total_news} news)`;
         var newsContainer = document.getElementById('newsCardContainer');
         newsContainer.innerHTML = ''; // Clear existing content
         data.news_results.forEach(news => {

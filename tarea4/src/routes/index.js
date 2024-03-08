@@ -16,7 +16,6 @@ router.use(express.json());
 // import routes from endpoints
 router.use('/login', loginRoutes);
 router.use ('/signup', signupRoutes);
-// TODO: add middleware before uploading
 router.use('/', authMiddleware, rootRoutes);
 
 
